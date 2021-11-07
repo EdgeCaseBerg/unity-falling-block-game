@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 7;
     float screenHalfWidthInWorldUnits;
     public event System.Action OnPlayerDeath;
+    public event System.Action OnCoinCollect;
 
     // Start is called before the first frame update
     void Start() {
         float playerHalfWidth = transform.localScale.x / 2f;
-        screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize + playerHalfWidth; 
+        screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize + playerHalfWidth;
     }
 
     // Update is called once per frame
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour
                 OnPlayerDeath();
             }
             Destroy(gameObject);
+        }
+        if (triggerCollider.tag == "Coin") {
+            if (OnCoinCollect != null) {
+                OnCoinCollect();
+            }
+            Destroy(triggerCollider.gameObject);
         }
     }
 }

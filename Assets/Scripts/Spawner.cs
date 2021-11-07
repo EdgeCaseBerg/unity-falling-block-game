@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
 
     public GameObject fallingBlockPrefab;
+    public GameObject fallingCoinPrefab;
     public Vector2 secondsBetweenSpawnsMinMax;
     public Vector2 spawnSizeMinMax;
     public float spawnAngleMax;
@@ -33,6 +34,11 @@ public class Spawner : MonoBehaviour
             Vector2 spawnPosition = new Vector2(Random.Range(-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), screenHalfSizeWorldUnits.y + spawnSize);
             GameObject newBlock = Instantiate(fallingBlockPrefab, spawnPosition, Quaternion.Euler(Vector3.forward * spawnAngle));
             newBlock.transform.localScale = Vector2.one * spawnSize;
+
+            float spawnCoinAngle = Random.Range(-spawnAngleMax, spawnAngleMax);
+
+            Vector2 spawnCoinPosition = new Vector2(Random.Range(-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), screenHalfSizeWorldUnits.y + fallingCoinPrefab.transform.localScale.y);
+            GameObject newCoin = Instantiate(fallingCoinPrefab, spawnCoinPosition, Quaternion.Euler(Vector3.forward * spawnCoinAngle));
         }
     }
 }
