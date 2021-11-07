@@ -23,6 +23,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         if (Time.time > nextSpawnTime) {
+            /* Spawn time will increase as the difficulty ramps up */
             float secondsBetweenSpawns = Mathf.Lerp(secondsBetweenSpawnsMinMax.y, secondsBetweenSpawnsMinMax.x, Difficulty.GetDifficultPercent());
             nextSpawnTime = Time.time + secondsBetweenSpawns;
 

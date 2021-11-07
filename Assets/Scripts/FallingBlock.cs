@@ -20,6 +20,7 @@ public class FallingBlock : MonoBehaviour
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime, Space.Self);
 
+        /* Destroy object once it's out of site to avoid memory issues */
         if (transform.position.y < visibleHeightThreshold) {
             Destroy(gameObject);
         }

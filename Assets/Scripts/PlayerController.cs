@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         float velocity = inputx * speed;
         transform.Translate(Vector2.right * velocity * Time.deltaTime);
 
+        /* If player moves off screen, then wrap them over to the other side */
         if (transform.position.x < -screenHalfWidthInWorldUnits) {
             transform.position = new Vector2(screenHalfWidthInWorldUnits, transform.position.y);
         }
