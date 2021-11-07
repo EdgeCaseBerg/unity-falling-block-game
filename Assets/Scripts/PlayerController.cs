@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 7;
     float screenHalfWidthInWorldUnits;
+    public event System.Action OnPlayerDeath;
 
     // Start is called before the first frame update
     void Start() {
@@ -32,6 +33,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D triggerCollider) {
         if (triggerCollider.tag == "Falling Block") {
+            if (OnPlayerDeath != null) {
+                OnPlayerDeath();
+            }
             Destroy(gameObject);
         }
     }

@@ -7,11 +7,12 @@ public class FallingBlock : MonoBehaviour
 
     public Vector2 speedMinMax;
     float speed;
-    float screenHalfWidthInWorldUnits;
+    float visibleHeightThreshold;
 
     private void Start() {
-        screenHalfWidthInWorldUnits = Camera.main.orthographicSize;
         speed = Mathf.Lerp(speedMinMax.x, speedMinMax.y, Difficulty.GetDifficultPercent());
+
+        visibleHeightThreshold = -Camera.main.orthographicSize - transform.localScale.y;
     }
 
     // Update is called once per frame
@@ -19,8 +20,8 @@ public class FallingBlock : MonoBehaviour
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime, Space.Self);
 
-        if (transform.position.y < -screenHalfWidthInWorldUnits) {
-            transform.position = new Vector2(transform.position.x, screenHalfWidthInWorldUnits);
+        if (transform.position.y < visibleHeightThreshold) {
+            Destroy(gameObject);
         }
     }
 }
