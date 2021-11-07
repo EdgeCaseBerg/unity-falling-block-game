@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ScoreDisplay : MonoBehaviour
 {
     public Text scoreDisplayText;
-    private int coinScore;
+    public int coinScore;
 
     // Start is called before the first frame update
     void Start()
